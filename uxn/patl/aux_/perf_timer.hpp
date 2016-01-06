@@ -6,7 +6,8 @@
 #ifndef PATL_AUX_PERF_TIMER_HPP
 #define PATL_AUX_PERF_TIMER_HPP
 
-#include <windows.h>
+#include <inttypes.h>
+#include <chrono>
 
 namespace uxn
 {
@@ -18,52 +19,37 @@ namespace aux
 class performance_timer
 {
 public:
+
+    typedef std::chrono::high_resolution_clock clock_type;
+
     performance_timer()
-        : start_(0)
-        , finish_(0)
+        : _start(clock_type::now())
+        , _finish()
     {
-        query_frequency();
         start();
     }
 
     void start()
     {
-        LARGE_INTEGER large;
-        QueryPerformanceCounter(&large);
-        start_ = large.QuadPart;
+        _start = clock_type::now();
     }
 
     void finish()
     {
-        LARGE_INTEGER large;
-        QueryPerformanceCounter(&large);
-        finish_ = large.QuadPart;
+        _finish = clock_type::now();
     }
 
     double get_seconds() const
     {
         return
-            static_cast<double>(finish_ - start_) /
-            static_cast<double>(frequency_);
+            static_cast<double>(std::chrono::duration_cast<std::chrono::seconds>
+                               (_finish - _start).count());
     }
 
 private:
-    static void query_frequency()
-    {
-        if (frequency_ == 0)
-        {
-            LARGE_INTEGER large;
-            QueryPerformanceFrequency(&large);
-            frequency_ = large.QuadPart;
-        }
-    }
-
-    static __int64 frequency_;
-    __int64 start_;
-    __int64 finish_;
+    clock_type::time_point _start;
+    clock_type::time_point _finish;
 };
-
-__int64 performance_timer::frequency_ = 0;
 
 } // namespace aux
 } // namespace patl
