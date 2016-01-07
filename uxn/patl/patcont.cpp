@@ -49,7 +49,8 @@ int main(int /*argc*/,char *argv[])
     while (input>>str)
         ++concor[str];
     tim.finish();
-    std::cout<<"Timer: "<<tim.get_seconds()<<" sec."<<std::endl;
+    std::cout<<"filling map Timer: "<<tim.get_seconds()<<" sec."<<std::endl;
+    std::cout<<"filling map Timer: "<<tim.get_mseconds()<<" msec."<<std::endl;
     ConcorMap concorClone=concor;
     const ConcorMap &cconc=concor;
     ConcorMap::const_iterator it;

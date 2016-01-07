@@ -46,6 +46,12 @@ public:
                                (_finish - _start).count());
     }
 
+    double get_mseconds() const
+    {
+        return
+            static_cast<double>(std::chrono::duration_cast<std::chrono::milliseconds>
+                               (_finish - _start).count());
+    }
 private:
     clock_type::time_point _start;
     clock_type::time_point _finish;
