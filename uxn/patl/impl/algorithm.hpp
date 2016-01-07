@@ -147,7 +147,8 @@ public:
 #ifdef PATL_ALIGNHACK
             qq_;
 #else
-            qid_ | reinterpret_cast<word_t>(q_);
+            //qid_ | reinterpret_cast<word_t>(q_);
+            qid_ | (word_t)(q_);
 #endif
     }
 

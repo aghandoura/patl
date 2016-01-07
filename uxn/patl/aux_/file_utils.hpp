@@ -9,7 +9,6 @@
 #include "../config.hpp"
 #include <string>
 #include <vector>
-#include <windows.h>
 
 namespace uxn
 {

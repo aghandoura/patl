@@ -76,7 +76,15 @@ protected:
     word_t *get_shortcut(word_t a) const
     {
         const shortcuts_t::const_iterator it(shortcuts_.find(a));
-        return a == shortcuts_.end() ? 0 : it->second;
+        if (it == shortcuts_.end())
+        {
+            return 0;
+        }
+        else
+        {
+            return it->second;
+        }
+
     }
 
     word_t *create_shortcut(word_t a)

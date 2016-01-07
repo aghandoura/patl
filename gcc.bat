@@ -1,7 +1,12 @@
 echo ---
 echo     building patl
 echo ---
-g++ -std=c++11  -Wextra -O3  -I. -Iuxn/patl/aux_/ -Iuxn/patl -Iuxn/patl/impl  uxn/patl/patcont.cpp -o release/patl_gcc.exe
+g++ -std=c++11 -fpermissive -Wextra -O3  -I. -Iuxn/patl/aux_/ -Iuxn/patl -Iuxn/patl/impl  uxn/patl/patcont.cpp -o release/patl_gcc.exe
+
+#echo ---
+#echo     building word_suffix
+#echo ---
+#g++ -std=c++11 -fpermissive -Wextra -O3 -I.  -Iuxn/patl/aux_/ -Iuxn/patl -Iuxn/patl/impl  uxn/demos/word_suffix/word_suffix.cpp -o release/word_suffix_gcc.exe
 
 #echo ---
 #echo     building ins_test
@@ -53,7 +58,3 @@ g++ -std=c++11  -Wextra -O3  -I. -Iuxn/patl/aux_/ -Iuxn/patl -Iuxn/patl/impl  ux
 #echo ---
 #g++ -Wextra -O3 -I.  -Iuxn/patl/aux_/ -Iuxn/patl -Iuxn/patl/impl  demos/usort3/usort3.cpp -o release/usort3_gcc.exe
 #
-#echo ---
-#echo     building word_suffix
-#echo ---
-#g++ -Wextra -O3 -I.  -Iuxn/patl/aux_/ -Iuxn/patl -Iuxn/patl/impl  demos/word_suffix/word_suffix.cpp -o release/word_suffix_gcc.exe
